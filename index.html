@@ -86,9 +86,10 @@ nav .links a:hover{color:var(--ink)}
 .body h3{margin-bottom:10px}
 .body p{color:var(--soft);font-size:15.5px}
 .learn{border-left:3px solid var(--red);padding-left:12px;color:var(--ink)!important}
-.go{margin-top:auto;font-weight:600;text-decoration:none;display:inline-flex;gap:6px;align-items:center;min-height:44px}
+.gos{margin-top:auto;display:flex;flex-wrap:wrap;gap:0 22px}
+.go{font-weight:600;text-decoration:none;display:inline-flex;gap:6px;align-items:center;min-height:44px}
 .go:hover{color:var(--red)}
-.go.off{color:var(--soft);cursor:default}
+.go.off{color:var(--soft);cursor:default;margin-top:auto}
 .growth{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:18px;align-items:center;background:var(--ink);color:var(--bg);border-radius:12px;padding:clamp(22px,3vw,36px);margin-top:56px}
 .growth h3{font-size:clamp(20px,2vw,26px);margin-bottom:8px}
 .growth p{margin:0;opacity:.8;font-size:15.5px}
@@ -126,7 +127,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 </style>
 </head>
 <body>
-<div class="note">Preview draft. Dashed red boxes mark items still to add (M2 video, photos, links).</div>
+<div class="note">Preview draft. Dashed red boxes mark items still to add (M2 video, photos).</div>
 <nav><div class="wrap">
 <a class="brand" href="#top"><i></i>Yuri Christian Horio</a>
 <div class="links"><a href="#about">About</a><a href="#work">Portfolio</a><a href="#beyond">Experience</a><a href="#cv">CV</a><a href="#contact">Contact</a></div>
@@ -209,7 +210,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <div>
 <h2>CV at a glance</h2>
 <p style="color:var(--soft);margin-top:16px">The full CV is available as a PDF. Contact details there are limited to email and LinkedIn.</p>
-<div class="btns todo" style="margin-top:20px"><span class="btn" style="border-style:dashed;border-color:var(--red)">Download CV (PDF link to add)</span></div>
+<div class="btns" style="margin-top:20px"><a class="btn main" id="cvdl" href="#cv">Open my CV (PDF)</a></div>
 <div class="ai" id="ai"><b>AI Use Note</b><p>I used Claude (Anthropic) to help plan this portfolio's structure, give feedback on my CV and cover letter, and suggest first drafts of page text. I reviewed and rewrote all text in my own voice. All artifacts, photos, designs and videos are my own work, except Meeting 3, completed with Luovic Wylee, which compares AI and student writing by design. This note matches my AI Declaration.</p></div>
 </div>
 </div></section>
@@ -232,25 +233,32 @@ const SP="https://prasetiyamulya-my.sharepoint.com/personal/13112310400_student_
 const L={
 m4:"https://prasetiyamulya-my.sharepoint.com/personal/13112310400_student_prasetiyamulya_ac_id/_layouts/15/stream.aspx?id=%2Fpersonal%2F13112310400_student_prasetiyamulya_ac_id%2FDocuments%2FProfcom%20Meeting%204%20Video%20Task-Yuri%20Christian%20Horio-13112310400%2EMOV&ga=1",
 m11:SP+"%5Fstudent%5Fprasetiyamulya%5Fac%5Fid%2FDocuments%2FGroup%20Presentation%20Profcom%2DYuri%20Christian%20Horio%2D13112310400%2EMP4&ga=1",
-m14:SP+"%5Fstudent%5Fprasetiyamulya%5Fac%5Fid%2FDocuments%2Fprofcom%2Emov&ga=1"};
+m14:SP+"%5Fstudent%5Fprasetiyamulya%5Fac%5Fid%2FDocuments%2Fprofcom%2Emov&ga=1",
+m3:"https://prasetiyamulya-my.sharepoint.com/:b:/g/personal/13112310400_student_prasetiyamulya_ac_id/IQAj8nJc9iuGS7lB72CPRvsNAYgOoL4d6HcYahKnos9VRog?e=IakmLg",
+m6:"https://prasetiyamulya-my.sharepoint.com/:v:/g/personal/13112310400_student_prasetiyamulya_ac_id/IQBq8rw13aM3Q4LbIs1wM7bnASphuvp5Z4FXtYq4Pgev6OE?e=tNZmNQ",
+m9:"https://prasetiyamulya-my.sharepoint.com/:b:/g/personal/13112310400_student_prasetiyamulya_ac_id/IQDRQ-CH6hT8Qo9kXpl1oWE8AbKh_jkDrIWf6XtGGiZvPYQ?e=217lYv",
+m10a:"https://prasetiyamulya-my.sharepoint.com/:b:/g/personal/13112310400_student_prasetiyamulya_ac_id/IQDB2it8qgGoRJaKzTqdg2G9AX4v4EosbxVmeoQoGHB9tmM?e=p8gNK5",
+m10b:"https://prasetiyamulya-my.sharepoint.com/:b:/g/personal/13112310400_student_prasetiyamulya_ac_id/IQDrctcsSLOsS53UhURlHiANAVgjPg-iDLj-OBp1d6Ffs_Y?e=uP88Zr",
+m14r:"https://prasetiyamulya-my.sharepoint.com/:b:/g/personal/13112310400_student_prasetiyamulya_ac_id/IQDt2THOGke2Sa4ZCO9A3hnuAa7Duj-u2vI1OEh5m1Fc2HI?e=TT9uyf"};
+document.getElementById('cvdl').href=L.m9;
 const G=[
 {t:"Finding my voice and direction",s:"Who I am, how I sound, where I am going",items:[
 {m:"Meeting 2",k:"Video",h:"Strong Presence",v:1,todo:1,cap:"Self-introduction",d:"A short video introducing myself, focused on posture, eye contact and voice.",l:"Presence is a habit I built: I now slow down, keep my hands calm and look into the lens instead of at my notes."},
-{m:"Meeting 3",k:"Writing, with Luovic Wylee",h:"AI Writing vs. Our Own Writing",pg:["Dear Customer,","We want to sincerely apologize for the inconvenience you've experienced with your router malfunction"],d:"We wrote a customer apology email three ways: by AI, by ourselves, and combined. The AI version was smooth but generic; ours was specific but stiff.",l:"AI is a first draft, never the final voice. The best version kept the AI's warmth and our real facts.",go:"Read the task"},
-{m:"Meeting 6",k:"Independent study video",h:"My Final Business Project",v:1,todo:1,cap:"3:21 presentation",d:"A video presenting the business project I am building for my final year at university.",l:"Lead with the customer's problem before the numbers, and plan my own research without waiting for instructions."}]},
+{m:"Meeting 3",k:"Writing, with Luovic Wylee",h:"AI Writing vs. Our Own Writing",pg:["Dear Customer,","We want to sincerely apologize for the inconvenience you've experienced with your router malfunction"],d:"We wrote a customer apology email three ways: by AI, by ourselves, and combined. The AI version was smooth but generic; ours was specific but stiff.",l:"AI is a first draft, never the final voice. The best version kept the AI's warmth and our real facts.",go:"Read the task",u:L.m3},
+{m:"Meeting 6",k:"Independent study video",h:"My Final Business Project",v:1,u:L.m6,cap:"3:21 presentation",d:"A video presenting the business project I am building for my final year at university.",l:"Lead with the customer's problem before the numbers, and plan my own research without waiting for instructions."}]},
 {t:"Speaking with impact",s:"Persuading, presenting, pitching",items:[
 {m:"Meeting 4",k:"Video",h:"Three-Minute Persuasive Speech",v:1,u:L.m4,cap:"3:00 speech",d:"Fitting one argument into three minutes forced me to choose my strongest point and cut the rest, much like framing a photo.",l:"Open with a hook, close with a clear call to action."},
 {m:"Meeting 11",k:"Group video",h:"Group Presentation",v:1,u:L.m11,cap:"In-class presentation",d:"Our group presented together in class, and I contributed both content and slide design.",l:"A presentation should sound like one voice, not four separate parts. Rehearsed transitions make that happen."},
-{m:"Meeting 14",k:"Video",h:"Individual Video Pitch",v:1,u:L.m14,cap:"Final pitch",d:"My last speaking task, and the one I am most proud of. I structure my points as problem, solution and benefit.",l:"I now write for my listener from the first line, and it shows in my confidence."}]},
+{m:"Meeting 14",k:"Video",h:"Individual Video Pitch",v:1,u:L.m14,u2:L.m14r,g2:"Read my reflection",cap:"Final pitch",d:"My last speaking task, and the one I am most proud of. I structure my points as problem, solution and benefit.",l:"I now write for my listener from the first line, and it shows in my confidence."}]},
 {t:"Ready for work",s:"Turning skills into career tools",items:[
-{m:"Meeting 9",k:"Document",h:"Curriculum Vitae",pg:["Yuri Christian Horio","Profile","Education","Experience"],d:"My CV for marketing graduate roles, rewritten to show my design role, internships and photography skills.",l:"A CV is a marketing document: every line should earn its place for the reader.",go:"View CV",href:"#cv"},
-{m:"Meeting 10",k:"Document",h:"Cover Letter for Unilever UFLP",pg:["Dear Ms. Kusuma,","I am writing to apply for the Marketing track of the Unilever Future Leaders Programme"],d:"An application to Unilever's Future Leaders Programme, Marketing track, connecting my experience to brands like Pepsodent and Lifebuoy.",l:"Research the company, then link every claim to what it needs. Proofread aloud.",go:"Read the letter"},
-{m:"Meeting 10",k:"Document",h:"Personal Statement",pg:["Personal Statement","At the photo studio where I interned, I learned that most of a photograph is decided before the shutter clicks."],d:"Built around one idea from photography that became the centre of this whole portfolio.",l:"One memorable insight says more about you than a list of achievements.",go:"Read the statement"}]}];
+{m:"Meeting 9",k:"Document",h:"Curriculum Vitae",pg:["Yuri Christian Horio","Profile","Education","Experience"],d:"My CV for marketing graduate roles, rewritten to show my design role, internships and photography skills.",l:"A CV is a marketing document: every line should earn its place for the reader.",go:"Open CV (PDF)",u:L.m9},
+{m:"Meeting 10",k:"Document",h:"Cover Letter for Unilever UFLP",pg:["Dear Ms. Kusuma,","I am writing to apply for the Marketing track of the Unilever Future Leaders Programme"],d:"An application to Unilever's Future Leaders Programme, Marketing track, connecting my experience to brands like Pepsodent and Lifebuoy.",l:"Research the company, then link every claim to what it needs. Proofread aloud.",go:"Read the letter",u:L.m10a},
+{m:"Meeting 10",k:"Document",h:"Personal Statement",pg:["Personal Statement","At the photo studio where I interned, I learned that most of a photograph is decided before the shutter clicks."],d:"Built around one idea from photography that became the centre of this whole portfolio.",l:"One memorable insight says more about you than a list of achievements.",go:"Read the statement",u:L.m10b}]}];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const media=i=>i.v
  ?`<div class="media vid"><div class="play"></div><span class="cap">${esc(i.cap)}</span>${i.todo?'<span class="badge">Video to add</span>':''}</div>`
  :`<div class="media doc"><div class="page"><b>${esc(i.pg[0])}</b>${i.pg.slice(1).map(x=>esc(x)+'<i></i><i></i>').join('')}<i></i><i></i><i style="width:70%"></i></div></div>`;
-const link=i=>i.u?`<a class="go" href="${esc(i.u)}">Watch video &rarr;</a>`
+const link=i=>i.u?`<div class="gos"><a class="go" href="${esc(i.u)}">${esc(i.v?"Watch video":i.go)} &rarr;</a>${i.u2?`<a class="go" href="${esc(i.u2)}">${esc(i.g2)} &rarr;</a>`:""}</div>`
  :i.href?`<a class="go" href="${esc(i.href)}">${esc(i.go)} &rarr;</a>`
  :`<span class="go off">${esc(i.go||'Watch video')} (link to add)</span>`;
 document.getElementById('groups').innerHTML=G.map(g=>`<div class="group"><div class="ghead"><h3>${esc(g.t)}</h3><span>${esc(g.s)}</span></div><div class="grid">${g.items.map(i=>`<article class="card${i.todo?' todo':''}">${media(i)}<div class="body"><div class="meta">${esc(i.m)} · ${esc(i.k)}</div><h3>${esc(i.h)}</h3><p>${esc(i.d)}</p><p class="learn">${esc(i.l)}</p>${link(i)}</div></article>`).join('')}</div></div>`).join('');
